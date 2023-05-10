@@ -30,8 +30,6 @@ const CustomCursor = () => {
         fill: 'forwards',
       });
     });
-
-    return () => {};
   }, []);
 
   return (

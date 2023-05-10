@@ -4,7 +4,7 @@ gsap.registerPlugin(CSSRulePlugin);
 
 export const introTimeline = () => {
   const intro = gsap.timeline();
-  let imageReveal = CSSRulePlugin.getRule('.img-container::after');
+  const imageReveal = CSSRulePlugin.getRule('.img-container::after');
 
   intro.to(imageReveal, {
     delay: 2,
@@ -29,17 +29,18 @@ export const navTimelineOpen = () => {
       },
       0
     )
-    .from(
-      '.nav-item',
-      {
-        duration: 0.2,
-        y: '200%',
-        ease: 'Expo.easeInOut',
-        stagger: 0.1,
-        skewY: 10,
-      },
-      0
-    )
+    // .from(
+    //   '.nav-item',
+    //   {
+    //     delay: 1,
+    //     duration: 0.2,
+    //     y: '100%',
+    //     ease: 'Power2.easeInOut',
+    //     // stagger: 0.1,
+    //     // skewY: 0,
+    //   },
+    //   0
+    // )
     .to('.root-container', {
       delay: -1,
       overflow: 'hidden',
