@@ -1,0 +1,93 @@
+.about {
+  position: relative;
+  background-color: $clr-sec;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 2%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding-top: 2vh;
+    padding-left: 4vw;
+
+    &-title {
+      font-size: clamp(2.5rem, 6vw, 6vw);
+      text-transform: uppercase;
+    }
+  }
+
+  &__content {
+    margin-top: 15vh;
+    padding: 1rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+
+    &-intro {
+      display: flex;
+      gap: 5vw;
+
+      @media screen and (min-width: 768px) {
+        gap: 30vw;
+      }
+
+      &--main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      &--links {
+        display: flex;
+        flex-direction: column;
+
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &-body {
+      margin-top: 5vh;
+
+      @media screen and (min-width: 768px) {
+        margin-top: -10vh;
+        float: right;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    padding-inline: 1rem;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    svg {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    ul {
+      li {
+        font-size: clamp(2.5rem, 5vw, 5vw);
+        margin-bottom: -1ch;
+        text-transform: uppercase;
+      }
+    }
+
+    &-copy {
+      margin-top: 0.5rem;
+      transform: scale(0.8);
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+}
