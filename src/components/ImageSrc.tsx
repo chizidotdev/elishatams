@@ -13,7 +13,7 @@ const ImageSrc: Component<ImageSrcProps> = (props) => {
     setImageSrc(initialImageSrc);
   };
 
-  return <img src={imageSrc()} alt="" />;
+  return <img src={initialImageSrc} alt="" />;
 };
 
 export default ImageSrc;

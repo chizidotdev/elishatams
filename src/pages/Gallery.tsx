@@ -1,6 +1,6 @@
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ImageSrc from '../components/ImageSrc';
-import { For, onMount } from 'solid-js';
+import { For, JSX, onMount } from 'solid-js';
 import { gsap } from 'gsap';
 import { A } from '@solidjs/router';
 
@@ -11,13 +11,11 @@ const Gallery = () => {
 
     matchmedia.add('(min-width: 768px)', () => {
       const navItems = gsap.utils.toArray(
-        '.gallery__navbar-item:not(:first-child)'
+        '.gallery__navbar-item'
       ) as HTMLElement[];
-      const images = gsap.utils.toArray(
-        '.gallery__list-item:not(:first-child)'
-      ) as HTMLElement[];
+      const images = gsap.utils.toArray('.gallery__list-item') as HTMLElement[];
 
-      gsap.set(images, { yPercent: 100 });
+      gsap.set(images, { opacity: 0 });
 
       ScrollTrigger.create({
         trigger: '.gallery__navbar',
@@ -28,23 +26,24 @@ const Gallery = () => {
       });
 
       navItems.forEach((item, index) => {
-        const title = item.querySelector('a');
         ScrollTrigger.create({
-          trigger: title,
-          start: 'top center',
-          end: 'bottom center',
-          animation: gsap.to(images[index], { yPercent: 0 }),
-          scrub: 0.5,
-          snap: {
-            snapTo: 1 / (navItems.length - 1),
-            duration: { min: 0.1, max: 0.1 },
-            delay: 0.5,
-            ease: 'power4.inOut',
-          },
+          trigger: item,
+          start: '-1% center',
+          end: '101% center',
+          animation: gsap.to(images[index], { opacity: 1 }),
+          toggleActions: 'play none none reverse',
+          onEnter: () => item.classList.add('is-active'),
+          onLeaveBack: () => item.classList.remove('is-active'),
+          onLeave: () => item.classList.remove('is-active'),
+          onEnterBack: () => item.classList.add('is-active'),
         });
       });
     });
   });
+
+  const handleClick: JSX.EventHandlerUnion<HTMLLIElement, MouseEvent> = (e) => {
+    e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   return (
     <div class="gallery">
@@ -56,7 +55,7 @@ const Gallery = () => {
         <ul class="gallery__navbar">
           <For each={portraits}>
             {(item) => (
-              <li class="gallery__navbar-item">
+              <li class="gallery__navbar-item" onClick={handleClick}>
                 <A href="">{item}</A>
               </li>
             )}
