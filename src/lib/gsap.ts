@@ -47,7 +47,6 @@ export const navTimelineOpen = () => {
       height: '100vh',
     });
 
-  // reverse ? toggleMenu.reverse() : toggleMenu.play();
   toggleMenu.play();
 };
 

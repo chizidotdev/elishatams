@@ -1,8 +1,8 @@
 $clr-pri: rgb(18, 17, 17);
 $clr-sec: rgb(255, 255, 255);
-// $clr-sec: rgb(249, 250, 250);
+$clr-acc: rgb(107 114 128);
+
 $font-pri: 'Playfair Display', serif;
-// $font-sec: 'Montserrat', sans-serif;
 $font-sec: 'Space Grotesk', sans-serif;
 
 html,
@@ -11,8 +11,15 @@ body {
   scroll-behavior: smooth;
 }
 
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .wrapper {
-  // max-width: 1280px;
   margin: 0 auto;
   padding-inline: 2rem;
 
@@ -25,8 +32,17 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .link {
   position: relative;
+  color: $clr-acc;
+  display: flex;
+  align-items: center;
+  width: max-content;
+
   &:before {
     position: absolute;
     content: '';
@@ -34,7 +50,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: rgb(156 163 175 / 1);
+    background-color: $clr-acc;
     transform: scaleX(0);
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.265, 1);
   }

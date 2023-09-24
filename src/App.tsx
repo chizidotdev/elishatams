@@ -1,30 +1,27 @@
-import React from 'react';
-
+import type { Component } from 'solid-js';
 import Home from './pages/Home';
-import Gallery from './pages/Gallery';
-import CustomCursor from './components/CustomCursor';
-
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './pages/About';
 import Navbar from './components/Navbar';
+import { Route, Router, Routes } from '@solidjs/router';
+import Cursor from './components/Cursor';
+import About from './pages/About';
+import Gallery from './pages/Gallery';
 
-function App() {
-    return (
-        <div className="bg-white overflow-x-hidden">
-            <CustomCursor />
+const App: Component = () => {
+  return (
+    <>
+      <Cursor />
 
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Navbar />}>
-                        <Route index element={<Home />} />
-
-                        <Route path="gallery" element={<Gallery />} />
-                        <Route path="about" element={<About />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
-}
+      <Router>
+        <Routes>
+          <Route path="/" component={Navbar}>
+            <Route path="/" component={Home} />
+            <Route path="/gallery" component={Gallery} />
+            <Route path="/about" component={About} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
+  );
+};
 
 export default App;

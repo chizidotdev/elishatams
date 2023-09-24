@@ -1,70 +1,51 @@
-import { useAnimation, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
-import IntroLoader from 'src/components/intro/Intro';
-import { defaultTransition } from 'src/utils/framerAnimations';
-import { introTimeline } from 'src/utils/gsapAnimations';
-import { AiFillCaretRight } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import ImageSrc from '../components/ImageSrc';
+import { AiFillCaretRight } from 'solid-icons/ai';
+import { A } from '@solidjs/router';
 
 const Home = () => {
-  const loaderControls = useAnimation();
-
-  useEffect(() => {
-    introTimeline();
-
-    setTimeout(() => {
-      loaderControls.start({
-        opacity: 0,
-        transition: defaultTransition,
-      });
-    }, 2000);
-  }, []);
-
   return (
     <>
-      <IntroLoader title='Elisha Tams.' loaderControls={loaderControls} />
-      <div className='home'>
-        <div className='home__heading'>
-          <div className='logo'>Elisha Tams.</div>
+      <div class="home">
+        <div class="home__heading">
+          <A href="">
+            <div class="logo">Elisha Tams.</div>
+          </A>
 
-          <p className='header__title hidden lg:block mr-[35vw] mt-3'>
+          <p class="header__title">
             elisha tams <br /> artist
           </p>
         </div>
 
-        <section className='wrapper'>
-          <div className='portrait'>
-            <div className='grid mt-5 md:mt-10'>
-              <section className='portrait__section flex items-end justify-end gap-12'>
-                <div className='portrait__heading md:text-right'>
-                  <h1 className='portrait__heading--title'>Elisha Tams</h1>
-                  <h1 className='portrait__heading--title'>Portfolio</h1>
-                </div>
+        <section class="wrapper">
+          <div class="portrait">
+            <section class="portrait__section top">
+              <div class="img-container">
+                <ImageSrc path="/images/self-4.jpg" />
+              </div>
+            </section>
 
-                <div className='portrait__section--body ml-10'>
-                  <div className='img-container'>
-                    <ProfileImage path='/images/self-4.jpg'/>
-                  </div>
-                </div>
-              </section>
+            <section class="portrait__section bottom">
+              <div class="portrait__heading">
+                <h1 class="portrait__heading--title">Elisha Tams</h1>
+                <h1 class="portrait__heading--title">Artist</h1>
+                <h1 class="portrait__heading--title">Portfolio</h1>
+                <A href="/gallery">
+                  <h1 class="portrait__heading--title link">
+                    Gallery <AiFillCaretRight />
+                  </h1>
+                </A>
+              </div>
 
-              <section className='portrait__section flex flex-col md:flex-row-reverse gap-6'>
-                <div className='portrait__heading flex-1 lg:flex-[2]'>
-                  <h1 className='portrait__heading--title'>Pencil Artist</h1>
-                  <Link to='/gallery'>
-                    <h1 className='portrait__heading--title link w-max text-gray-500 flex items-center cursor-pointer'>
-                      Gallery <AiFillCaretRight />
-                    </h1>
-                  </Link>
+              <div class="portrait__section--body">
+                <div class="img-container">
+                  <ImageSrc
+                    path="/images/self-1.jpg"
+                    width={600}
+                    height={900}
+                  />
                 </div>
-
-                <div className='portrait__section--body flex-1 mr-10 lg:mr-20 lg:-mt-10'>
-                  <div className='img-container'>
-                    <ProfileImage path='/images/self-1.jpg'/>
-                  </div>
-                </div>
-              </section>
-            </div>
+              </div>
+            </section>
           </div>
         </section>
       </div>
@@ -72,32 +53,4 @@ const Home = () => {
   );
 };
 
-const ProfileImage: React.FC<{path: string}> = ({ path }) => {
-  const initialImageSrc = `https://ik.imagekit.io/chizidotdev${path}/tr:w-600`
-  const [imageSrc, setImageSrc] = useState(`${initialImageSrc},q-1`)
-
-  useEffect(() => {
-    const image = new Image();
-    image.src = initialImageSrc;
-    image.onload = () => {
-      console.log('loaded', initialImageSrc)
-      setImageSrc(initialImageSrc);
-    };
-  }, [])
-
-  return (
-    <motion.img
-      initial={{ scale: 1.6 }}
-      animate={{ scale: 1 }}
-      transition={{ ...defaultTransition, delay: 2 }}
-      className='portrait__img'
-      src={imageSrc}
-      alt=''
-      width={700}
-      height={1000}
-    />
-  );
-};
-
 export default Home;
-

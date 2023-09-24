@@ -1,40 +1,38 @@
-// html,
-// body {
-//   *,
-//   *::after,
-//   *::before {
-//     cursor: none;
-//   }
-// }
-// .secondary-cursor {
-//   z-index: 1000;
-//   border-radius: 50%;
-//   width: 70px;
-//   height: 70px;
-//   border: 1px solid black;
-//   pointer-events: none;
-//   overflow: hidden;
-//   transform: translate3d(0, 0, 0);
-//   position: fixed;
-// }
-
 .secondary-cursor {
-  width: 20px;
-  height: 20px;
-  width: clamp(20px, 1.5vw, 0.5vw);
-  height: clamp(20px, 1.5vw, 0.5vw);
-  mix-blend-mode: difference;
+  width: clamp(12px, 1.5vw, 0.4vw);
+  height: clamp(12px, 1.5vw, 0.4vw);
   z-index: 1000;
   transition: width 0.3s ease-in-out, opacity 0.5s ease;
 
   position: fixed;
   transform: translate3d(0, 0, 0);
   border-radius: 50%;
-  border: 1px solid $clr-sec;
+  border: 1px solid $clr-pri;
   background-color: $clr-sec;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
   overflow: hidden;
+
+  &.interacting {
+    background-color: $clr-pri;
+    mix-blend-mode: normal;
+  }
+
+  &__icon {
+    opacity: 0;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    width: 8px;
+    color: $clr-sec;
+  }
 }
 
 #custom-cursor {

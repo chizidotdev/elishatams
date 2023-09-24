@@ -1,134 +1,104 @@
-import { useAnimation, useMotionValue, useSpring } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
-import Header from 'src/components/gallery/Header';
-import ImageLink from 'src/components/ImageLink';
-import { motion } from 'framer-motion';
-import { defaultTransition } from 'src/utils/framerAnimations';
-import { portraits } from 'src/utils/data';
-import { shuffle } from 'src/utils/shuffleArray';
-import IntroLoader from 'src/components/intro/Intro';
-import Modal from 'src/components/Modal';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ImageSrc from '../components/ImageSrc';
+import { For, onMount } from 'solid-js';
+import { gsap } from 'gsap';
+import { A } from '@solidjs/router';
 
-export interface Datatype {
-  cover: string;
-  title: string;
-  color: string;
-  slug: string;
-}
-
-const gridUtils = [600, 400, 700, 600, 900];
-
+gsap.registerPlugin(ScrollTrigger);
 const Gallery = () => {
-  const [gridVisible, setGridVisible] = useState(true);
-  const [shuffledData, setShuffledData] = useState(portraits);
-  const [selectedImage, setSelectedImage] = useState<string | null>('');
-  const gridRef = useRef<HTMLDivElement | null>(null);
+  onMount(() => {
+    const matchmedia = gsap.matchMedia();
 
-  const gridAnimation = useAnimation();
+    matchmedia.add('(min-width: 768px)', () => {
+      const navItems = gsap.utils.toArray(
+        '.gallery__navbar-item:not(:first-child)'
+      ) as HTMLElement[];
+      const images = gsap.utils.toArray(
+        '.gallery__list-item:not(:first-child)'
+      ) as HTMLElement[];
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+      gsap.set(images, { yPercent: 100 });
 
-  useEffect(() => {
-    sequence();
-
-    setShuffledData(shuffle(portraits));
-  }, []);
-
-  const loaderControls = useAnimation();
-
-  useEffect(() => {
-    setTimeout(() => {
-      loaderControls.start({
-        opacity: 0,
-        transition: defaultTransition,
+      ScrollTrigger.create({
+        trigger: '.gallery__navbar',
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: '.gallery__list',
+        scrub: true,
       });
-    }, 3500);
-  }, []);
 
-  async function sequence() {
-    gridAnimation.set((index) => ({
-      y: gridUtils[index % 5],
-      scale: 1.1,
-    }));
-
-    await gridAnimation.start({
-      y: 0,
-      transition: { ...defaultTransition, duration: 1.6, delay: 3 },
+      navItems.forEach((item, index) => {
+        const title = item.querySelector('a');
+        ScrollTrigger.create({
+          trigger: title,
+          start: 'top center',
+          end: 'bottom center',
+          animation: gsap.to(images[index], { yPercent: 0 }),
+          scrub: 0.5,
+          snap: {
+            snapTo: 1 / (navItems.length - 1),
+            duration: { min: 0.1, max: 0.1 },
+            delay: 0.5,
+            ease: 'power4.inOut',
+          },
+        });
+      });
     });
-
-    await gridAnimation.start({
-      scale: 1,
-      transition: defaultTransition,
-    });
-
-    setGridVisible(false);
-  }
-
-  const handleGridParallax = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (gridRef.current) {
-      const speed = -20;
-      const { width, height } = gridRef.current.getBoundingClientRect();
-      const offsetX = event.pageX - width * 0.5;
-      const offsetY = event.pageY - height * 0.5;
-
-      const newTransformX = (offsetX * speed) / 50;
-      const newTransformY = (offsetY * speed) / 50;
-
-      x.set(newTransformX);
-      y.set(newTransformY);
-    }
-  };
-
-  const xMotion = useSpring(x, { stiffness: 400, damping: 90 });
-  const yMotion = useSpring(y, { stiffness: 400, damping: 90 });
+  });
 
   return (
-    <>
-      <IntroLoader title='Gallery.' loaderControls={loaderControls} />
-      <Modal selected={selectedImage} setSelected={setSelectedImage} />
+    <div class="gallery">
+      <header class="gallery__header">
+        <h1 class="gallery__header-title">Gallery</h1>
+      </header>
 
-      <div data-scroll-section className='gallery'>
-        <Header view={gridVisible} toggleView={setGridVisible} />
-        <div className='gallery__content'>
-          {gridVisible && (
-            <div data-scroll-container className='gallery__grid-container'>
-              <motion.div
-                className='gallery__grid-elements'
-                ref={gridRef}
-                onMouseMove={handleGridParallax}
-                transition={defaultTransition}
-                style={{ x: xMotion, y: yMotion }}
-              >
-                {shuffledData.map((element, index) => (
-                  <motion.div
-                    key={index}
-                    animate={gridAnimation}
-                    custom={index}
-                    className='element'
-                  >
-                    <div className='thumbnail-wrapper'>
-                      <ImageLink path={element} index={index} setSelected={setSelectedImage} />
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          )}
+      <div class="gallery__content">
+        <ul class="gallery__navbar">
+          <For each={portraits}>
+            {(item) => (
+              <li class="gallery__navbar-item">
+                <A href="">{item}</A>
+              </li>
+            )}
+          </For>
+        </ul>
 
-          {!gridVisible && (
-            <div className='gallery__list-elements' data-scroll-section>
-              {shuffledData.map((element, index) => (
-                <div key={index} className='element'>
-                  <ImageLink path={element} index={index} setSelected={setSelectedImage} /> 
+        <div class="gallery__list">
+          <For each={portraits}>
+            {(image) => (
+              <div class="gallery__list-item">
+                <ImageSrc path={image} />
+                <div class="gallery__list-item-title">
+                  <A href="">{image}</A>
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            )}
+          </For>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Gallery;
+
+export const portraits = [
+  '/images/img-1.jpg',
+  '/images/img-2.jpg',
+  '/images/img-3.jpg',
+  '/images/img-5.jpg',
+  '/images/img-6.jpg',
+  '/images/img-7.jpg',
+  '/images/img-8.jpg',
+  '/images/img-9.jpg',
+  '/images/img-10.jpg',
+  '/images/img-11.jpg',
+  '/images/img-12.jpg',
+  '/images/img-13.jpg',
+  '/images/img-14.jpg',
+  '/images/img-15.jpg',
+  '/images/img-16.jpg',
+  '/images/img-17.jpg',
+  '/images/img-18.jpg',
+  '/images/img-19.jpg',
+];

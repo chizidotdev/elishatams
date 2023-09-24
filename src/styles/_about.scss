@@ -6,19 +6,26 @@
   padding-inline: 2%;
 
   &__header {
+    margin-block: 0.5rem;
     display: flex;
     align-items: center;
     padding-top: 2vh;
     padding-left: 4vw;
+    padding-block: 1rem;
+
+    @media screen and (min-width: 768px) {
+      padding-block: 0;
+    }
 
     &-title {
       font-size: clamp(2.5rem, 6vw, 6vw);
+      font-weight: normal;
       text-transform: uppercase;
     }
   }
 
   &__content {
-    margin-top: 15vh;
+    margin-top: clamp(2rem, 8vw, 10rem);
     padding: 1rem;
     font-size: clamp(1rem, 2vw, 1.25rem);
 
@@ -26,8 +33,19 @@
       display: flex;
       gap: 5vw;
 
-      @media screen and (min-width: 768px) {
-        gap: 30vw;
+      @media screen and (min-width: 1024px) {
+        gap: 20vw;
+      }
+
+      &--img {
+        width: 40%;
+
+        img {
+          width: 100%;
+          @media screen and (min-width: 1024px) {
+            width: 70%;
+          }
+        }
       }
 
       &--main {
@@ -37,10 +55,13 @@
       }
 
       &--links {
+        margin-top: 1rem;
         display: flex;
         flex-direction: column;
+        gap: 0.3rem;
 
         a {
+          color: $clr-pri;
           text-decoration: underline;
         }
       }
@@ -48,8 +69,10 @@
 
     &-body {
       margin-top: 5vh;
+      line-height: 1.5;
 
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 1024px) {
+        width: 60%;
         margin-top: -10vh;
         float: right;
       }
@@ -63,12 +86,19 @@
     gap: 0.5rem;
 
     padding-inline: 1rem;
+    padding-block: 5rem 2.5rem;
     font-size: clamp(0.8rem, 2vw, 1rem);
+
+    &-links {
+      display: flex;
+      gap: 1.5rem;
+    }
 
     a {
       display: flex;
       align-items: center;
       gap: 5px;
+      color: $clr-pri;
     }
 
     svg {

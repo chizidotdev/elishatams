@@ -1,62 +1,60 @@
-import React, { useState } from 'react';
-// import { BsArrowRight } from 'react-icons/bs';
-import { Link, Outlet } from 'react-router-dom';
-import { navTimelineClose, navTimelineOpen } from '../utils/gsapAnimations';
+import { A, Outlet } from '@solidjs/router';
+import { Magnetic } from './Magnetic';
+import { createSignal } from 'solid-js';
+import { navTimelineClose, navTimelineOpen } from '../lib/gsap';
 
 const Navbar = () => {
-  const [, setDisabled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = createSignal(false);
 
   const handleMenu = () => {
-    setDisabled(true);
-
-    if (open) {
+    if (open()) {
       navTimelineClose();
       setOpen(false);
     } else {
       navTimelineOpen();
       setOpen(true);
     }
-
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
   };
 
   return (
     <>
-      <section data-scroll-section className='root-container'>
-        <header className='header'>
-          <nav className='header__nav'>
-            <ul className='flex flex-col' onClick={handleMenu}>
-              <Link to='/'>
-                <li className='nav-item'>Home</li>
-              </Link>
-              <Link to='/gallery'>
-                <li className='nav-item'>Gallery</li>
-              </Link>
-              <Link to='/about'>
-                <li className='nav-item'>About</li>
-              </Link>
+      <section data-scroll-section class="root-container">
+        <header class="header">
+          <nav class="header__nav">
+            <ul onClick={handleMenu}>
+              <A href="/">
+                <li class="nav-item">Home</li>
+              </A>
+              <A href="/gallery">
+                <li class="nav-item">Gallery</li>
+              </A>
+              <A href="/about">
+                <li class="nav-item">About</li>
+              </A>
             </ul>
 
-            <div className='header__nav-social'>
-              <a href='https://instagram.com/elisha_tamzy?igshid=YmMyMTA2M2Y='>
+            <div class="header__nav-social">
+              <a href="https://instagram.com/elisha_tamzy?igshid=YmMyMTA2M2Y=">
                 <span>Instagram</span>
               </a>
-              <a href='https://twitter.com/elisha_tams'>
+              <a href="https://twitter.com/elisha_tams">
                 <span>Twitter</span>
               </a>
-              <a href='https://www.wa.me/+2348144792294/'>
+              <a href="https://www.wa.me/+2348144792294/">
                 <span>WhatsApp</span>
               </a>
             </div>
           </nav>
         </header>
 
-        <div className='menu' onClick={handleMenu} />
+        <Magnetic>
+          <div class="menu" onClick={handleMenu}>
+            <div class="menu__line" />
+            <div class="menu__line" />
+          </div>
+        </Magnetic>
 
-        <div className='outlet mx-auto'>
+        <div class="outlet">
           <Outlet />
         </div>
       </section>
