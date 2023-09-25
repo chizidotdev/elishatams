@@ -15,7 +15,7 @@ const Gallery = () => {
       ) as HTMLElement[];
       const images = gsap.utils.toArray('.gallery__list-item') as HTMLElement[];
 
-      gsap.set(images, { opacity: 0 });
+      gsap.set(images, { opacity: 0, scale: 0.95 });
 
       ScrollTrigger.create({
         trigger: '.gallery__navbar',
@@ -30,7 +30,11 @@ const Gallery = () => {
           trigger: item,
           start: '-1% center',
           end: '101% center',
-          animation: gsap.to(images[index], { opacity: 1 }),
+          animation: gsap.to(images[index], {
+            opacity: 1,
+            scale: 1,
+            duration: 0.4,
+          }),
           toggleActions: 'play none none reverse',
           onEnter: () => item.classList.add('is-active'),
           onLeaveBack: () => item.classList.remove('is-active'),
@@ -75,6 +79,8 @@ const Gallery = () => {
           </For>
         </div>
       </div>
+
+      <div class="gallery-shadow" />
     </div>
   );
 };
