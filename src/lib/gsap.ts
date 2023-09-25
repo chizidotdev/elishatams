@@ -20,27 +20,18 @@ export const navTimelineOpen = () => {
   const toggleMenu = gsap.timeline();
 
   toggleMenu
-    .to(
-      '.outlet',
-      {
-        y: '50vh',
-        width: '95%',
-        ease: 'Power2.easeInOut',
-      },
-      0
-    )
-    // .from(
-    //   '.nav-item',
-    //   {
-    //     delay: 1,
-    //     duration: 0.2,
-    //     y: '100%',
-    //     ease: 'Power2.easeInOut',
-    //     // stagger: 0.1,
-    //     // skewY: 0,
-    //   },
-    //   0
-    // )
+    .to('.outlet', {
+      y: '50vh',
+      width: '95%',
+      ease: 'Power2.easeInOut',
+    })
+    .to('.nav-item', {
+      delay: -0.5,
+      duration: 0.2,
+      y: '0',
+      ease: 'Power2.easeInOut',
+      stagger: 0.1,
+    })
     .to('.root-container', {
       delay: -1,
       overflow: 'hidden',
@@ -58,10 +49,15 @@ export const navTimelineClose = () => {
       y: '0',
       width: '100%',
       ease: 'Power2.easeInOut',
+      clearProps: 'y',
     })
     .to('.root-container', {
       delay: -1,
       height: 'auto',
+      clearProps: 'overflow',
+    })
+    .to('.nav-item', {
+      y: '100%',
     });
 
   toggleMenu.play();
