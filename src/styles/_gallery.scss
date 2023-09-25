@@ -73,16 +73,28 @@
       margin-bottom: 0.4em;
       opacity: 0.24;
       visibility: inherit;
+      display: flex;
+      align-items: end;
+      gap: clamp(1.5rem, 5vw, 10rem);
+      font: {
+        size: clamp(1.5rem, 4vw, 4vw);
+        weight: 100;
+      }
+
       &:hover,
       &.is-active {
         opacity: 1;
       }
 
-      a {
+      &--index {
         font: {
-          size: clamp(1.5rem, 4vw, 4vw);
-          weight: 100;
+          size: 0.2em;
+          weight: 500;
         }
+        margin-bottom: 1.2em;
+      }
+
+      a {
         line-height: 1.2;
         color: $clr-pri;
       }
@@ -113,6 +125,20 @@
       @media screen and (max-width: 768px) {
         position: static;
         height: initial;
+      }
+
+      &--title {
+        a {
+          color: $clr-pri;
+          font: {
+            size: clamp(1.5rem, 4vw, 4rem);
+            weight: 100;
+          }
+        }
+
+        @media screen and (min-width: 768px) {
+          display: none;
+        }
       }
     }
 

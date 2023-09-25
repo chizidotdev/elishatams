@@ -58,9 +58,12 @@ const Gallery = () => {
       <div class="gallery__content">
         <ul class="gallery__navbar">
           <For each={portraits}>
-            {(item) => (
+            {(portrait, index) => (
               <li class="gallery__navbar-item" onClick={handleClick}>
-                <A href="">{item}</A>
+                <span class="gallery__navbar-item--index">
+                  Pr. {index() + 1}
+                </span>
+                <A href="">{portrait.name}</A>
               </li>
             )}
           </For>
@@ -68,11 +71,11 @@ const Gallery = () => {
 
         <div class="gallery__list">
           <For each={portraits}>
-            {(image) => (
+            {(portrait) => (
               <div class="gallery__list-item">
-                <ImageSrc path={image} />
-                <div class="gallery__list-item-title">
-                  <A href="">{image}</A>
+                <ImageSrc path={portrait.path} />
+                <div class="gallery__list-item--title">
+                  <A href="">{portrait.name}</A>
                 </div>
               </div>
             )}
@@ -88,22 +91,43 @@ const Gallery = () => {
 export default Gallery;
 
 export const portraits = [
-  '/images/img-1.jpg',
-  '/images/img-2.jpg',
-  '/images/img-3.jpg',
-  '/images/img-5.jpg',
-  '/images/img-6.jpg',
-  '/images/img-7.jpg',
-  '/images/img-8.jpg',
-  '/images/img-9.jpg',
-  '/images/img-10.jpg',
-  '/images/img-11.jpg',
-  '/images/img-12.jpg',
-  '/images/img-13.jpg',
-  '/images/img-14.jpg',
-  '/images/img-15.jpg',
-  '/images/img-16.jpg',
-  '/images/img-17.jpg',
-  '/images/img-18.jpg',
-  '/images/img-19.jpg',
+  { name: 'Emily Davis', path: '/images/img-1.jpg' },
+  { name: 'Cali Floyd', path: '/images/img-2.jpg' },
+  { name: 'Kiara White', path: '/images/img-3.jpg' },
+  { name: 'Savannah Castillo', path: '/images/img-5.jpg' },
+  { name: 'Ariel Miller', path: '/images/img-6.jpg' },
+  { name: 'Adeline Stewart', path: '/images/img-7.jpg' },
+  { name: 'Malcolm Newman', path: '/images/img-8.jpg' },
+  { name: 'Kayson Cooper', path: '/images/img-9.jpg' },
+  { name: 'Kylie Myers', path: '/images/img-10.jpg' },
+  { name: 'Eleanor Patel', path: '/images/img-11.jpg' },
+  { name: 'John Baker', path: '/images/img-12.jpg' },
+  { name: 'Travis Ramos', path: '/images/img-13.jpg' },
+  { name: 'Bailey Nelson', path: '/images/img-14.jpg' },
+  { name: 'Madelyn Robinson', path: '/images/img-15.jpg' },
+  { name: 'Kobe Cruz', path: '/images/img-16.jpg' },
+  { name: 'Jayce Watson', path: '/images/img-17.jpg' },
+  { name: 'Brooklynn Meyer', path: '/images/img-18.jpg' },
+  { name: 'Bentley Cox', path: '/images/img-19.jpg' },
+  // { name: 'Paul Lindsey', path: '/images/img-20.jpg' },
 ];
+// export const portraits = [
+//   '/images/img-1.jpg',
+//   '/images/img-2.jpg',
+//   '/images/img-3.jpg',
+//   '/images/img-5.jpg',
+//   '/images/img-6.jpg',
+//   '/images/img-7.jpg',
+//   '/images/img-8.jpg',
+//   '/images/img-9.jpg',
+//   '/images/img-10.jpg',
+//   '/images/img-11.jpg',
+//   '/images/img-12.jpg',
+//   '/images/img-13.jpg',
+//   '/images/img-14.jpg',
+//   '/images/img-15.jpg',
+//   '/images/img-16.jpg',
+//   '/images/img-17.jpg',
+//   '/images/img-18.jpg',
+//   '/images/img-19.jpg',
+// ];
