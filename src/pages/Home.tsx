@@ -25,10 +25,12 @@ const Home = () => {
             </section>
 
             <section class="portrait__section bottom">
-              <div class="portrait__heading">
-                <h1 class="portrait__heading--title">Elisha Tams</h1>
-                <h1 class="portrait__heading--title">Artist</h1>
-                <h1 class="portrait__heading--title">Portfolio</h1>
+              <div>
+                <div class="portrait__heading">
+                  <h1 class="portrait__heading--title">Elisha Tams</h1>
+                  <h1 class="portrait__heading--title">Artist</h1>
+                  <h1 class="portrait__heading--title">Portfolio</h1>
+                </div>
                 <A href="/gallery">
                   <h1 class="portrait__heading--title link">
                     Gallery <AiFillCaretRight />
@@ -38,11 +40,7 @@ const Home = () => {
 
               <div class="portrait__section--body">
                 <div class="img-container">
-                  <ImageSrc
-                    path="/images/self-1.jpg"
-                    width={600}
-                    height={900}
-                  />
+                  <ImageSrc path="/images/self-1.jpg" />
                 </div>
               </div>
             </section>
