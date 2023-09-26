@@ -18,6 +18,7 @@ export const introTimeline = () => {
 
 export const navTimelineOpen = () => {
   const toggleMenu = gsap.timeline();
+  gsap.set('.nav-item', { y: '200%' });
 
   toggleMenu
     .to('.outlet', {
@@ -55,9 +56,6 @@ export const navTimelineClose = () => {
       delay: -1,
       height: 'auto',
       clearProps: 'overflow',
-    })
-    .to('.nav-item', {
-      y: '100%',
     });
 
   toggleMenu.play();

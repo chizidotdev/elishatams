@@ -5,7 +5,10 @@ import { gsap } from 'gsap';
 import { A } from '@solidjs/router';
 
 gsap.registerPlugin(ScrollTrigger);
+
 const Gallery = () => {
+  onMount(() => setTimeout(() => ScrollTrigger.refresh(), 500));
+
   onMount(() => {
     const matchmedia = gsap.matchMedia();
 
@@ -17,29 +20,31 @@ const Gallery = () => {
 
       gsap.set(images, { opacity: 0, scale: 0.95 });
 
-      ScrollTrigger.create({
-        trigger: '.gallery__navbar',
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: '.gallery__list',
-        scrub: true,
+      gsap.to('.gallery__navbar', {
+        scrollTrigger: {
+          trigger: '.gallery__navbar',
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: '.gallery__list',
+          scrub: true,
+        },
       });
 
       navItems.forEach((item, index) => {
-        ScrollTrigger.create({
-          trigger: item,
-          start: '-1% center',
-          end: '101% center',
-          animation: gsap.to(images[index], {
-            opacity: 1,
-            scale: 1,
-            duration: 0.4,
-          }),
-          toggleActions: 'play none none reverse',
-          onEnter: () => item.classList.add('is-active'),
-          onLeaveBack: () => item.classList.remove('is-active'),
-          onLeave: () => item.classList.remove('is-active'),
-          onEnterBack: () => item.classList.add('is-active'),
+        gsap.to(images[index], {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          scrollTrigger: {
+            trigger: item,
+            start: '-1% center',
+            end: '101% center',
+            toggleActions: 'play none none reverse',
+            onEnter: () => item.classList.add('is-active'),
+            onLeaveBack: () => item.classList.remove('is-active'),
+            onLeave: () => item.classList.remove('is-active'),
+            onEnterBack: () => item.classList.add('is-active'),
+          },
         });
       });
     });
@@ -109,25 +114,4 @@ export const portraits = [
   { name: 'Jayce Watson', path: '/images/img-17.jpg' },
   { name: 'Brooklynn Meyer', path: '/images/img-18.jpg' },
   { name: 'Bentley Cox', path: '/images/img-19.jpg' },
-  // { name: 'Paul Lindsey', path: '/images/img-20.jpg' },
 ];
-// export const portraits = [
-//   '/images/img-1.jpg',
-//   '/images/img-2.jpg',
-//   '/images/img-3.jpg',
-//   '/images/img-5.jpg',
-//   '/images/img-6.jpg',
-//   '/images/img-7.jpg',
-//   '/images/img-8.jpg',
-//   '/images/img-9.jpg',
-//   '/images/img-10.jpg',
-//   '/images/img-11.jpg',
-//   '/images/img-12.jpg',
-//   '/images/img-13.jpg',
-//   '/images/img-14.jpg',
-//   '/images/img-15.jpg',
-//   '/images/img-16.jpg',
-//   '/images/img-17.jpg',
-//   '/images/img-18.jpg',
-//   '/images/img-19.jpg',
-// ];

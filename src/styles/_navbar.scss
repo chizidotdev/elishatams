@@ -18,6 +18,7 @@
   // transition: all 0.3s ease-in-out;
 
   position: fixed;
+  top: 0;
   right: 0;
   z-index: 900;
   mix-blend-mode: difference;
@@ -126,7 +127,6 @@
           color: #fff;
           text-transform: uppercase;
           transition: transform 0.3s linear;
-          transform: translateY(100%);
 
           // transform-origin: bottom left;
           transition: transform 0.3s;
