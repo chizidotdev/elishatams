@@ -67,7 +67,7 @@ const Gallery = () => {
           <ul class="gallery__navbar">
             <For each={portraits}>
               {(portrait, index) => (
-                <li class="gallery__navbar-item" onClick={handleClick}>
+                <li class="gallery__navbar-item interactable" onClick={handleClick}>
                   <span class="gallery__navbar-item--index">
                     Pr. {index() + 1}
                   </span>

@@ -41,6 +41,7 @@ const About = () => {
                   href="mailto:elishatams@gmail.com/"
                   target="_blank"
                   rel="noreferrer"
+                  class="interactable"
                 >
                   elishatams@gmail.com
                 </a>
@@ -48,6 +49,7 @@ const About = () => {
                   href="https://www.wa.me/+2348144792294/"
                   target="_blank"
                   rel="noreferrer"
+                  class="interactable"
                 >
                   +234&nbsp;814&nbsp;479&nbsp;2294
                 </a>
@@ -94,6 +96,7 @@ const About = () => {
               href="https://twitter.com/elisha_tams"
               rel="noreferrer"
               target="_blank"
+              class="interactable"
             >
               <BsTwitter /> Twitter
             </a>
@@ -101,6 +104,7 @@ const About = () => {
               href="https://instagram.com/elisha_tamzy?igshid=YmMyMTA2M2Y="
               rel="noreferrer"
               target="_blank"
+              class="interactable"
             >
               <BsInstagram /> Instagram
             </a>
@@ -108,6 +112,7 @@ const About = () => {
               href="https://www.wa.me/+2348144792294/"
               rel="noreferrer"
               target="_blank"
+              class="interactable"
             >
               <BsWhatsapp /> WhatsApp
             </a>
@@ -118,7 +123,7 @@ const About = () => {
               href="https://www.chizi.dev"
               rel="noreferrer"
               target="_blank"
-              class="link text-gray-500"
+              class="interactable link text-gray-500"
             >
               Chizi Victor
             </a>

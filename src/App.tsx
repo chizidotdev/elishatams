@@ -5,6 +5,7 @@ import { Route, Router, Routes } from '@solidjs/router';
 import Cursor from './components/Cursor';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
+import Upload from './pages/Upload';
 
 const App: Component = () => {
   return (
@@ -18,6 +19,7 @@ const App: Component = () => {
             <Route path="/gallery" component={Gallery} />
             <Route path="/about" component={About} />
           </Route>
+          <Route path="/upload" component={Upload} />
         </Routes>
       </Router>
     </>

@@ -23,24 +23,27 @@ const Navbar = () => {
           <nav class="header__nav">
             <ul onClick={handleMenu}>
               <A href="/">
-                <li class="nav-item">Home</li>
+                <li class="nav-item interactable">Home</li>
               </A>
               <A href="/gallery">
-                <li class="nav-item">Gallery</li>
+                <li class="nav-item interactable">Gallery</li>
               </A>
               <A href="/about">
-                <li class="nav-item">About</li>
+                <li class="nav-item interactable">About</li>
               </A>
             </ul>
 
             <div class="header__nav-social">
-              <a href="https://instagram.com/elisha_tamzy?igshid=YmMyMTA2M2Y=">
+              <a
+                class="interactable"
+                href="https://instagram.com/elisha_tamzy?igshid=YmMyMTA2M2Y="
+              >
                 <span>Instagram</span>
               </a>
-              <a href="https://twitter.com/elisha_tams">
+              <a class="interactable" href="https://twitter.com/elisha_tams">
                 <span>Twitter</span>
               </a>
-              <a href="https://www.wa.me/+2348144792294/">
+              <a class="interactable" href="https://www.wa.me/+2348144792294/">
                 <span>WhatsApp</span>
               </a>
             </div>

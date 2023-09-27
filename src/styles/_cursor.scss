@@ -1,14 +1,13 @@
+.primary-cursor,
 .secondary-cursor {
-  width: clamp(12px, 1.5vw, 0.4vw);
-  height: clamp(12px, 1.5vw, 0.4vw);
   z-index: 1000;
-  transition: width 0.3s ease-in-out, opacity 0.5s ease;
+  transition:
+    width 0.3s ease-in-out,
+    opacity 0.5s ease;
 
   position: fixed;
   transform: translate3d(0, 0, 0);
   border-radius: 50%;
-  border: 1px solid $clr-pri;
-  background-color: $clr-sec;
 
   display: flex;
   align-items: center;
@@ -17,7 +16,7 @@
   overflow: hidden;
 
   &.interacting {
-    background-color: $clr-pri;
+    background-color: $clr-acc;
     mix-blend-mode: normal;
   }
 
@@ -35,8 +34,27 @@
   }
 }
 
+.primary-cursor {
+  width: clamp(12px, 1.5vw, 0.4vw);
+  height: clamp(12px, 1.5vw, 0.4vw);
+  background-color: $clr-sec;
+  mix-blend-mode: difference;
+}
+
+.secondary-cursor {
+  border: 1px solid $clr-sec;
+  mix-blend-mode: difference;
+  width: clamp(32px, 3.5vw, 3.5vw);
+  height: clamp(32px, 3.5vw, 3.5vw);
+  background-color: transparent;
+}
+
 #custom-cursor {
-  opacity: 0;
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }
 
 body:hover #custom-cursor {

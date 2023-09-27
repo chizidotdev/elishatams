@@ -19,14 +19,17 @@ const IntroLoader = ({ title }: { title: string }) => {
         opacity: 1,
         ease: 'power4.inOut',
       })
-      .to([titleRef, introRef], {
+      .to(titleRef, {
         duration: 1.5,
         y: '-100%',
         opacity: 0,
         ease: 'power4.inOut',
-        stagger: {
-          amount: 0.5,
-        },
+      })
+      .to(introRef, {
+        delay: -1,
+        duration: 1.5,
+        y: '-100%',
+        ease: 'power4.inOut',
       })
       .to(introRef, {
         display: 'none',

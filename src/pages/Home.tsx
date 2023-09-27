@@ -34,7 +34,7 @@ const Home = () => {
                   <h1 class="portrait__heading--title">Portfolio</h1>
                 </div>
                 <A href="/gallery">
-                  <h1 class="portrait__heading--title link">
+                  <h1 class="portrait__heading--title link interactable">
                     Gallery <AiFillCaretRight />
                   </h1>
                 </A>
