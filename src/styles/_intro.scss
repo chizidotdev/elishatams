@@ -1,14 +1,11 @@
 .intro-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: $clr-pri;
   height: 100vh;
-  z-index: 100;
+  z-index: 1000;
   color: $clr-sec;
-  font-size: 3rem;
+  font-size: clamp(1.2rem, 2vw, 2vw);
   text-transform: capitalize;
   display: flex;
   align-items: center;

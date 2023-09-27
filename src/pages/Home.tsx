@@ -1,10 +1,12 @@
 import ImageSrc from '../components/ImageSrc';
 import { AiFillCaretRight } from 'solid-icons/ai';
 import { A } from '@solidjs/router';
+import IntroLoader from '../components/IntroLoader';
 
 const Home = () => {
   return (
     <>
+      <IntroLoader title="Elisha Tams." />
       <div class="home">
         <div class="home__heading">
           <A href="">

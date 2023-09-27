@@ -3,6 +3,7 @@ import ImageSrc from '../components/ImageSrc';
 import { For, JSX, onMount } from 'solid-js';
 import { gsap } from 'gsap';
 import { A } from '@solidjs/router';
+import IntroLoader from '../components/IntroLoader';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,41 +56,44 @@ const Gallery = () => {
   };
 
   return (
-    <div class="gallery">
-      <header class="gallery__header">
-        <h1 class="gallery__header-title">Gallery</h1>
-      </header>
+    <>
+      <IntroLoader title="Gallery." />
+      <div class="gallery">
+        <header class="gallery__header">
+          <h1 class="gallery__header-title">Gallery</h1>
+        </header>
 
-      <div class="gallery__content">
-        <ul class="gallery__navbar">
-          <For each={portraits}>
-            {(portrait, index) => (
-              <li class="gallery__navbar-item" onClick={handleClick}>
-                <span class="gallery__navbar-item--index">
-                  Pr. {index() + 1}
-                </span>
-                <A href="">{portrait.name}</A>
-              </li>
-            )}
-          </For>
-        </ul>
-
-        <div class="gallery__list">
-          <For each={portraits}>
-            {(portrait) => (
-              <div class="gallery__list-item">
-                <ImageSrc path={portrait.path} />
-                <div class="gallery__list-item--title">
+        <div class="gallery__content">
+          <ul class="gallery__navbar">
+            <For each={portraits}>
+              {(portrait, index) => (
+                <li class="gallery__navbar-item" onClick={handleClick}>
+                  <span class="gallery__navbar-item--index">
+                    Pr. {index() + 1}
+                  </span>
                   <A href="">{portrait.name}</A>
-                </div>
-              </div>
-            )}
-          </For>
-        </div>
-      </div>
+                </li>
+              )}
+            </For>
+          </ul>
 
-      <div class="gallery-shadow" />
-    </div>
+          <div class="gallery__list">
+            <For each={portraits}>
+              {(portrait) => (
+                <div class="gallery__list-item">
+                  <ImageSrc path={portrait.path} />
+                  <div class="gallery__list-item--title">
+                    <A href="">{portrait.name}</A>
+                  </div>
+                </div>
+              )}
+            </For>
+          </div>
+        </div>
+
+        <div class="gallery-shadow" />
+      </div>
+    </>
   );
 };
 

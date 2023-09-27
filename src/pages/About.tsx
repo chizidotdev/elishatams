@@ -1,10 +1,12 @@
 // import { useAnimation, motion } from 'framer-motion';
 import { BsInstagram, BsTwitter, BsWhatsapp } from 'solid-icons/bs';
 import { imageKitURI } from '../lib/constants';
+import IntroLoader from '../components/IntroLoader';
 
 const About = () => {
   return (
     <>
+      <IntroLoader title="About." />
       <div class="about">
         <header class="about__header">
           <h1 class="about__header-title">About</h1>
