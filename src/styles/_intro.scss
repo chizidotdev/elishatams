@@ -13,3 +13,15 @@
   justify-content: center;
   pointer-events: none;
 }
+
+.img {
+  position: relative;
+}
+.img::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  inset: 0;
+  background-color: $clr-pri;
+  z-index: 10;
+}

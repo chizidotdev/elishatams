@@ -10,6 +10,7 @@ const IntroLoader = ({ title }: { title: string }) => {
     if (!titleRef || !introRef) return;
 
     gsap.set(titleRef, { y: 100, opacity: 0 });
+    gsap.set('img', { scale: 1.2 });
     const timeline = gsap.timeline();
     timeline
       .to(titleRef, {
@@ -29,7 +30,16 @@ const IntroLoader = ({ title }: { title: string }) => {
       })
       .to(introRef, {
         display: 'none',
-      });
+      })
+      .to(
+        'img',
+        {
+          scale: 1,
+          duration: 1,
+          ease: 'power4.inOut',
+        },
+        '-=1.7'
+      );
   });
 
   return (
