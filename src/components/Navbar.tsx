@@ -1,10 +1,12 @@
 import { A, Outlet } from '@solidjs/router';
 import { Magnetic } from './Magnetic';
-import { createSignal } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 import { navTimelineClose, navTimelineOpen } from '../lib/gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Navbar = () => {
   const [open, setOpen] = createSignal(false);
+  createEffect(() => ScrollTrigger.refresh(open()));
 
   const handleMenu = () => {
     if (open()) {
@@ -18,7 +20,17 @@ const Navbar = () => {
 
   return (
     <>
-      <section data-scroll-section class="root-container">
+      <div
+        class="menu"
+        onClick={handleMenu}
+        data-scroll-target=".root-container"
+        data-scroll
+        data-scroll-fixed
+      >
+        <div class="menu__line" />
+        <div class="menu__line" />
+      </div>
+      <section data-scroll-container class="root-container">
         <header class="header">
           <nav class="header__nav">
             <ul onClick={handleMenu}>
@@ -50,14 +62,9 @@ const Navbar = () => {
           </nav>
         </header>
 
-        <Magnetic>
-          <div class="menu" onClick={handleMenu}>
-            <div class="menu__line" />
-            <div class="menu__line" />
-          </div>
-        </Magnetic>
+        <Magnetic></Magnetic>
 
-        <div class="outlet">
+        <div class="outlet" data-scroll-container>
           <Outlet />
         </div>
       </section>

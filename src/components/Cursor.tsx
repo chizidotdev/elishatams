@@ -1,5 +1,5 @@
 import { onMount } from 'solid-js';
-// import parser from 'ua-parser-js';
+import parser from 'ua-parser-js';
 
 const Cursor = () => {
   let cursorContainer: HTMLDivElement | undefined;
@@ -7,9 +7,9 @@ const Cursor = () => {
   let secondaryCursor: HTMLDivElement | undefined;
 
   onMount(() => {
-    // if (parser().device.type === 'mobile' && cursorContainer) {
-    //   cursorContainer.style.display = 'none';
-    // }
+    if (parser().device.type === 'mobile' && cursorContainer) {
+      cursorContainer.style.display = 'none';
+    }
 
     window.addEventListener('mousemove', (event) => {
       primaryCursorHandler(event);

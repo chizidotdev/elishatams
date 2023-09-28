@@ -22,6 +22,7 @@ body {
 .wrapper {
   margin: 0 auto;
   padding-inline: 1.5rem;
+  max-width: 3500px;
 
   @media (min-width: 768px) {
     padding-inline: 3.5rem;

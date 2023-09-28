@@ -1,13 +1,17 @@
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ImageSrc from '../components/ImageSrc';
-import { For, JSX, onMount } from 'solid-js';
+import { For, JSX, createEffect, onMount } from 'solid-js';
 import { gsap } from 'gsap';
 import { A } from '@solidjs/router';
 import IntroLoader from '../components/IntroLoader';
+import { useLocoScroll } from '../LocoScrollContext';
+import { ScrollToTarget } from 'locomotive-scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Gallery = () => {
+  const context = useLocoScroll();
+
   onMount(() => setTimeout(() => ScrollTrigger.refresh(), 500));
 
   onMount(() => {
@@ -24,6 +28,7 @@ const Gallery = () => {
       gsap.to('.gallery__navbar', {
         scrollTrigger: {
           trigger: '.gallery__navbar',
+          scroller: '[data-scroll-container]',
           start: 'top top',
           end: 'bottom bottom',
           pin: '.gallery__list',
@@ -38,6 +43,7 @@ const Gallery = () => {
           duration: 0.4,
           scrollTrigger: {
             trigger: item,
+            scroller: '[data-scroll-container]',
             start: '-1% center',
             end: '101% center',
             toggleActions: 'play none none reverse',
@@ -52,7 +58,14 @@ const Gallery = () => {
   });
 
   const handleClick: JSX.EventHandlerUnion<HTMLLIElement, MouseEvent> = (e) => {
-    e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const { locoScroll } = context();
+    const offset = window.innerHeight / 2;
+    locoScroll.scrollTo(e.target as ScrollToTarget, {
+      offset: -offset,
+      duration: 1,
+      easing: [0.25, 0.75, 0.5, 1.25],
+    });
+    // e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   return (
@@ -67,7 +80,10 @@ const Gallery = () => {
           <ul class="gallery__navbar">
             <For each={portraits}>
               {(portrait, index) => (
-                <li class="gallery__navbar-item interactable" onClick={handleClick}>
+                <li
+                  class="gallery__navbar-item interactable"
+                  onClick={handleClick}
+                >
                   <span class="gallery__navbar-item--index">
                     Pr. {index() + 1}
                   </span>
