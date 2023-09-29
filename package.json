@@ -19,9 +19,8 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.8.3",
+    "@studio-freight/lenis": "^1.0.25",
     "gsap": "^3.12.2",
-    "imagekit-javascript": "^2.0.0",
-    "locomotive-scroll": "^4.1.4",
     "sass": "^1.68.0",
     "solid-icons": "^1.0.12",
     "solid-js": "^1.7.6",

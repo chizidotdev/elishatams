@@ -6,11 +6,13 @@ import Cursor from './components/Cursor';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Upload from './pages/Upload';
-import { LocoScrollProvider } from './LocoScrollContext';
+import { useLenisScroll } from './useLenis';
 
 const App: Component = () => {
+  useLenisScroll();
+
   return (
-    <LocoScrollProvider>
+    <>
       <Cursor />
 
       <Router>
@@ -23,7 +25,7 @@ const App: Component = () => {
           <Route path="/upload" component={Upload} />
         </Routes>
       </Router>
-    </LocoScrollProvider>
+    </>
   );
 };
 
