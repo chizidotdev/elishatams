@@ -23,7 +23,6 @@ const Gallery = () => {
           scale: 1,
           duration: 0.4,
           scrollTrigger: {
-            markers: true,
             trigger: item,
             start: 'top 80%',
             end: 'bottom 80%',

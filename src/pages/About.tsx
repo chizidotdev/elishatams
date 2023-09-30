@@ -1,8 +1,15 @@
 import { BsInstagram, BsTwitter, BsWhatsapp } from 'solid-icons/bs';
 import { imageKitURI } from '../lib/constants';
 import IntroLoader from '../components/IntroLoader';
+import { createSignal } from 'solid-js';
 
 const About = () => {
+  const [overflowShow, setOverflowShow] = createSignal(false);
+
+  const handleReadMore = () => {
+    setOverflowShow(!overflowShow());
+  };
+
   return (
     <>
       <IntroLoader title="About." />
@@ -13,11 +20,7 @@ const About = () => {
 
         <div class="about__content">
           <div class="about__content-intro">
-            <div
-              data-scroll
-              data-scroll-speed="0.1"
-              class="about__content-intro--img"
-            >
+            <div class="about__content-intro--img">
               <img
                 src={`${imageKitURI}/images/self-1.jpeg`}
                 alt="Elisha tams"
@@ -58,34 +61,47 @@ const About = () => {
 
           <div class="about__content-body">
             <p>
-              My name is Tamunodiepriye Elisha. I am from Nigeria and I reside
-              in Port Harcourt city in River State. My first experience as an
-              artist was when I began tracing and making sketches at 5years old.
-              My older brother loved drawing and I always watched him play
-              around his pencils as it made me want to draw as well; He was my
-              first influence.
-              <br />
-              Being among other kids who had the same burning desire and
-              enthusiasm served as another form of inspiration but the best of
-              them all was when I was on my way home in 2016, I saw a road side
-              artist working on a realistic drawing. I had never seen a drawing
-              as good and real as his and it was there I realise that I had to
-              improve and expand my knowledge in Art.
-              <br />
-              I believe that being an artist something that one is born to do
-              and then followed up with consistent training as I studied through
-              practical experiences, learning through trial and error and
-              studying the works of Kelvin Okafor and many other artists.it was
-              here I further expanded my knowledge on graphite, and charcoal
-              drawings.
-              <br />
-              <br />I have been drawing profressionally for 6 years and I have
-              created a lot of art pieces and also made numerous commissioned
-              drawings as well. I work primarily using graphite and charcoal
-              pencils and I currently work from home. My biggest Achievement
-              would be inspiring other artist, friends and children in learning
-              how to draw and becoming good at it.
+              Tamunodiepriye Elisha, hailing from Nigeria and residing in Port
+              Harcourt city, Rivers State, experienced his initial foray into the
+              world of art at the age of five. His elder brother's passion for
+              drawing served as a profound influence during his formative years.
+              Observing his brother's artistic pursuits with pencils ignited a
+              similar desire within him, making it an early and influential
+              catalyst in his artistic journey.
+              <span class={`overflow-text${overflowShow() ? ' show' : ''}`}>
+                <br />
+                <br />
+                Surrounded by peers who shared his burning enthusiasm for art,
+                Tamunodiepriye found an additional wellspring of inspiration
+                among them. However, a pivotal moment occurred during a 2016
+                journey homeward when he encountered a roadside artist engrossed
+                in crafting a hyper-realistic drawing. The sheer excellence of
+                this artwork left an indelible impression on Tamunodiepriye,
+                leading to a profound realization of the need for continuous
+                improvement and an expanded understanding of the art form.
+                <br />
+                In his belief, being an artist is an innate calling, one that
+                requires consistent training and dedication. Tamunodiepriye
+                pursued practical experiences, learned through trial and error,
+                and delved into the works of accomplished artists, including
+                Kelvin Okafor. These endeavors further enriched his knowledge of
+                graphite and charcoal drawings.
+                <br />
+                <br />
+                With six years of professional artistic experience under his
+                belt, Tamunodiepriye has amassed an impressive portfolio
+                comprising various art pieces and numerous commissioned
+                drawings. His preferred mediums are graphite and charcoal
+                pencils, and he currently operates from the comfort of his home
+                studio. Yet, among his many accomplishments, he takes the
+                greatest pride in inspiring fellow artists, friends, and
+                children to embark on their artistic journeys, guiding them
+                toward mastery in the art of drawing.
+              </span>
             </p>
+            <button class="read-more interactable" onclick={handleReadMore}>
+              {overflowShow() ? 'Show Less' : 'Show More'}
+            </button>
           </div>
         </div>
 

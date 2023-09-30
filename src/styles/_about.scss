@@ -78,6 +78,24 @@
         margin-top: clamp(-15rem, -15vw, -10rem);
         float: right;
       }
+
+      .overflow-text {
+        overflow: hidden;
+        display: inline-block;
+        max-height: 0px;
+        transition: all 1s ease-in-out;
+
+        &.show {
+          max-height: 500vw;
+        }
+      }
+
+      .read-more {
+        all: unset;
+        text-decoration: underline;
+        color: $clr-acc;
+        cursor: pointer;
+      }
     }
   }
 
