@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
-import { JSX, onCleanup, onMount } from 'solid-js';
+import { onCleanup, onMount } from 'solid-js';
 
-export const Magnetic = (props: { children: JSX.Element }) => {
+export const Menu = (props: { onClick: () => void }) => {
   let ref: HTMLDivElement | undefined;
 
   onMount(() => {
@@ -41,5 +41,10 @@ export const Magnetic = (props: { children: JSX.Element }) => {
     });
   });
 
-  return <div>{props.children}</div>;
+  return (
+    <div ref={ref} class="menu interactable" onClick={props.onClick}>
+      <div class="menu__line" />
+      <div class="menu__line" />
+    </div>
+  );
 };

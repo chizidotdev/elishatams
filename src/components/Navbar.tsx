@@ -1,5 +1,5 @@
 import { A, Outlet } from '@solidjs/router';
-import { Magnetic } from './Magnetic';
+import { Menu } from './Menu';
 import { createEffect, createSignal } from 'solid-js';
 import { navTimelineClose, navTimelineOpen } from '../lib/gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -20,17 +20,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        class="menu"
-        onClick={handleMenu}
-        data-scroll-target=".root-container"
-        data-scroll
-        data-scroll-fixed
-      >
-        <div class="menu__line" />
-        <div class="menu__line" />
-      </div>
-      <section data-scroll-container class="root-container">
+      <Menu onClick={handleMenu} />
+      <section class="root-container">
         <header class="header">
           <nav class="header__nav">
             <ul onClick={handleMenu}>
@@ -62,9 +53,7 @@ const Navbar = () => {
           </nav>
         </header>
 
-        <Magnetic></Magnetic>
-
-        <div class="outlet" data-scroll-container>
+        <div class="outlet">
           <Outlet />
         </div>
       </section>
