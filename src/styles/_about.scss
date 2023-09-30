@@ -83,7 +83,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.5rem;
+    gap: 1rem;
 
     padding-inline: 1rem;
     padding-block: 5rem 2.5rem;
@@ -114,10 +114,13 @@
     }
 
     &-copy {
-      margin-top: 0.5rem;
-      transform: scale(0.8);
+      transform: scale(0.9);
       display: flex;
       gap: 0.5rem;
+
+      .link {
+        color: $clr-acc;
+      }
     }
   }
 }
