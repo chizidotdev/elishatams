@@ -13,6 +13,27 @@ const Gallery = () => {
   onMount(() => {
     const matchmedia = gsap.matchMedia();
 
+    matchmedia.add('(max-width: 767px)', () => {
+      const images = gsap.utils.toArray('.gallery__list-item') as HTMLElement[];
+      gsap.set(images, { opacity: 0.3, scale: 0.8 });
+
+      images.forEach((item, index) => {
+        gsap.to(images[index], {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          scrollTrigger: {
+            markers: true,
+            trigger: item,
+            start: 'top 80%',
+            end: 'bottom 80%',
+            scrub: true,
+            toggleActions: 'play none none reverse',
+          },
+        });
+      });
+    });
+
     matchmedia.add('(min-width: 768px)', () => {
       const navItems = gsap.utils.toArray(
         '.gallery__navbar-item'
@@ -86,7 +107,7 @@ const Gallery = () => {
                 <div class="gallery__list-item">
                   <ImageSrc path={portrait.path} />
                   <div class="gallery__list-item--title">
-                    <A href="">{portrait.name}</A>
+                    <span>{portrait.name}</span>
                   </div>
                 </div>
               )}
