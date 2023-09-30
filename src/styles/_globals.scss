@@ -1,5 +1,5 @@
 $clr-pri: rgb(18, 17, 17);
-$clr-sec: rgb(255, 255, 255);
+$clr-sec: rgb(247, 255, 247);
 $clr-acc: rgb(107 114 128);
 
 $font-pri: 'Playfair Display', serif;
@@ -9,6 +9,7 @@ html,
 body {
   font-family: $font-sec;
   scroll-behavior: smooth;
+  background-color: $clr-sec;
 }
 
 *,

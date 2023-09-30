@@ -28,6 +28,7 @@
     margin-top: clamp(2rem, 8vw, 10rem);
     padding: 1rem;
     font-size: clamp(1rem, 2vw, 1.25rem);
+    font-family: $font-pri;
 
     &-intro {
       display: flex;
@@ -70,16 +71,18 @@
     &-body {
       margin-top: 5vh;
       line-height: 1.5;
+      font-size: clamp(1.2rem, 2vw, 3rem);
 
       @media screen and (min-width: 1024px) {
         width: 60%;
-        margin-top: -10vh;
+        margin-top: clamp(-15rem, -15vw, -10rem);
         float: right;
       }
     }
   }
 
   &__nav {
+    font-family: $font-pri;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

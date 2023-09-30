@@ -15,7 +15,6 @@
   background-color: $clr-sec;
   background-color: transparent;
   border-radius: 50%;
-  // transition: all 0.3s ease-in-out;
 
   position: fixed;
   top: 0;
@@ -38,16 +37,11 @@
     height: 2px;
     mix-blend-mode: difference;
     background-color: $clr-sec;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
   }
 }
 
 .header {
   position: fixed;
-  // transform: translateY(-100%);
 
   &__nav {
     padding-inline: 3vw;
@@ -62,11 +56,12 @@
     }
 
     &-social {
-      font-size: clamp(0.8rem, 2vw, 1.2rem);
+      font-size: clamp(1rem, 2vw, 1vw);
       color: $clr-sec;
       display: flex;
-      gap: 1rem;
+      gap: clamp(1rem, 2vw, 1vw);
       padding: 1.5rem 0;
+      font-family: $font-pri;
 
       a {
         color: $clr-sec;
@@ -108,7 +103,6 @@
         font-size: clamp(2.5rem, 7vw, 6.5vw);
         color: $clr-sec;
         line-height: 1.5ch;
-        // margin-bottom: -1.5ch;
         text-transform: uppercase;
         position: relative;
         cursor: pointer;
@@ -117,19 +111,12 @@
         align-items: center;
         gap: 3%;
 
-        @media screen and (max-width: 64rem) {
-          // margin-bottom: -0.5ch;
-        }
-
         .nav-item {
           display: flex;
           font-weight: 300;
           color: #fff;
           text-transform: uppercase;
           transition: transform 0.3s linear;
-
-          // transform-origin: bottom left;
-          transition: transform 0.3s;
 
           &:hover {
             transform: translateX(10%) !important;

@@ -103,7 +103,6 @@ const Gallery = () => {
 export default Gallery;
 
 export const portraits = [
-  { name: 'Emily Davis', path: '/images/img-1.jpg' },
   { name: 'Cali Floyd', path: '/images/img-2.jpg' },
   { name: 'Kiara White', path: '/images/img-3.jpg' },
   { name: 'Savannah Castillo', path: '/images/img-5.jpg' },
@@ -117,6 +116,7 @@ export const portraits = [
   { name: 'Travis Ramos', path: '/images/img-13.jpg' },
   { name: 'Bailey Nelson', path: '/images/img-14.jpg' },
   { name: 'Madelyn Robinson', path: '/images/img-15.jpg' },
+  { name: 'Emily Davis', path: '/images/img-1.jpg' },
   { name: 'Kobe Cruz', path: '/images/img-16.jpg' },
   { name: 'Jayce Watson', path: '/images/img-17.jpg' },
   { name: 'Brooklynn Meyer', path: '/images/img-18.jpg' },
