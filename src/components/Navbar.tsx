@@ -38,15 +38,27 @@ const Navbar = () => {
 
             <div class="header__nav-social">
               <a
+                rel="noreferrer"
+                target="_blank"
                 class="interactable"
-                href="https://instagram.com/elisha_tamzy?igshid=YmMyMTA2M2Y="
+                href="https://instagram.com/elisha_tamzy"
               >
                 <span>Instagram</span>
               </a>
-              <a class="interactable" href="https://twitter.com/elisha_tams">
+              <a
+                class="interactable"
+                rel="noreferrer"
+                target="_blank"
+                href="https://twitter.com/elisha_tams"
+              >
                 <span>Twitter</span>
               </a>
-              <a class="interactable" href="https://www.wa.me/+2348144792294/">
+              <a
+                class="interactable"
+                rel="noreferrer"
+                target="_blank"
+                href="https://www.wa.me/+2348144792294/"
+              >
                 <span>WhatsApp</span>
               </a>
             </div>
